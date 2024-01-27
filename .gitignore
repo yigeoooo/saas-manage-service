@@ -12,6 +12,9 @@ target/
 *.iml
 *.ipr
 
+.github/workflows/qodana_code_quality.yml
+qodana.yaml
+
 ### Eclipse ###
 .apt_generated
 .classpath
