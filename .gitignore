@@ -12,6 +12,9 @@ target/
 *.iml
 *.ipr
 
+.github
+qodana.yaml
+
 ### Eclipse ###
 .apt_generated
 .classpath
