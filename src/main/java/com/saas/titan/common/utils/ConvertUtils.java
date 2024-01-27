@@ -55,7 +55,7 @@ public class ConvertUtils {
 		if (bytes == null) {
 			return false;
 		}
-		return bytes[0] == 0x01 ? true : false;
+		return bytes[0] == 0x01;
 	}
 
 	/**

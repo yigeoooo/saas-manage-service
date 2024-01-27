@@ -46,6 +46,7 @@ public class LogAspect {
         try {
             MDC.put("TRACE_ID", StringUtils.getUUID());
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            assert attributes != null;
             HttpServletRequest request = attributes.getRequest();
 
             StringBuilder requestLog = new StringBuilder();
@@ -83,7 +84,7 @@ public class LogAspect {
     @AfterReturning(returning = "resultInfo", pointcut = "controllerMethod()")
     public void logResultInfo(Object resultInfo) {
         String js =  JSONObject.toJSONString(resultInfo);
-        log.info("請求結果：" + js);
+        log.info("請求結果：{}", js);
 //        log.info("請求結果：" + JSONObject.parseObject(js));
     }
 

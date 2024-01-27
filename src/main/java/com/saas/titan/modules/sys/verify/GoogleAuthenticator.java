@@ -35,7 +35,7 @@ public class GoogleAuthenticator {
     /**
      * 可偏移的時間 3*30秒的驗證時間
      */
-    private static Integer window_size = 3;
+    private static final Integer WINDOW_SIZE = 3;
 
 
     /**
@@ -133,7 +133,7 @@ public class GoogleAuthenticator {
         long t = (timeMsec / 1000L) / 30L;
         // Window is used to check codes generated in the near past.
         // You can use this value to tune how far you're willing to go.
-        for (int i = -window_size; i <= window_size; ++i) {
+        for (int i = -WINDOW_SIZE; i <= WINDOW_SIZE; ++i) {
             long hash;
             try {
                 hash = verifyCode(decodedKey, t + i);
