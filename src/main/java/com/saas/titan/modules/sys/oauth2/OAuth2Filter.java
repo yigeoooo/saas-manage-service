@@ -78,7 +78,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
             String json = new Gson().toJson(ResultInfo.build(ResultCode.UNAUTHORIZED));
             httpResponse.getWriter().print(json);
         } catch (IOException e1) {
-
+            return false;
         }
 
         return false;
