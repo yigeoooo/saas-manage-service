@@ -1,6 +1,7 @@
 package com.saas.titan.modules.department.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -56,6 +57,7 @@ public class DepartmentMasterEntity implements Serializable {
 	/**
 	 * 邏輯刪除標識符
 	 */
+	@TableLogic
 	private String isDeleted;
 	/**
 	 * 插入人id

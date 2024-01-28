@@ -6,10 +6,7 @@ import com.saas.titan.modules.department.dto.DepartmentDto;
 import com.saas.titan.modules.department.vo.DepartmentInsertVo;
 import com.saas.titan.modules.department.vo.DepartmentVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.saas.titan.modules.department.service.DepartmentMasterService;
 
@@ -49,6 +46,21 @@ public class DepartmentMasterController {
     public ResultInfo<Object> insert(@RequestBody DepartmentInsertVo params) {
         try {
             departmentMasterService.insert(params);
+            return ResultInfo.build(true);
+        } catch (Exception e) {
+            return ResultInfo.build(e);
+        }
+    }
+
+    /**
+     * 根据id逻辑删除科室
+     * @param id 主键
+     * @return ResultInfo 统一返回值
+     */
+    @DeleteMapping("/{id}")
+    public ResultInfo<Object> delete(@PathVariable("id") String id) {
+        try {
+            departmentMasterService.removeById(id);
             return ResultInfo.build(true);
         } catch (Exception e) {
             return ResultInfo.build(e);
