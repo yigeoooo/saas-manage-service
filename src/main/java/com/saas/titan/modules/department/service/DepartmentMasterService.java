@@ -29,5 +29,12 @@ public interface DepartmentMasterService extends IService<DepartmentMasterEntity
      */
     void insert(DepartmentInsertVo param);
 
+    /**
+     * 根据id查询信息
+     * @param id 主键
+     * @return DepartmentDto dto对象
+     */
+    DepartmentDto getInfoById(String id);
+
 }
 

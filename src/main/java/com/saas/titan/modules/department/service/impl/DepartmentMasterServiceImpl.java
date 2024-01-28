@@ -48,6 +48,16 @@ public class DepartmentMasterServiceImpl extends ServiceImpl<DepartmentMasterDao
         departmentMasterDao.insert(entity);
     }
 
+    @Override
+    public DepartmentDto getInfoById(String id) {
+        DepartmentMasterEntity entity = departmentMasterDao.selectById(id);
+        DepartmentDto dto = new DepartmentDto();
+        dto.setDepartmentCode(entity.getDepartmentCode());
+        dto.setDepartmentName(entity.getDepartmentName());
+        dto.setManager(entity.getManager());
+        return dto;
+    }
+
     /**
      * 創建TITAN-CODE
      * @param prefixCode 編號前綴

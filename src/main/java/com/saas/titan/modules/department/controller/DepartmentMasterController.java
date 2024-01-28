@@ -67,4 +67,14 @@ public class DepartmentMasterController {
         }
     }
 
+    /***
+     * 根据id查询科室信息
+     * @param id 主键
+     * @return ResultInfo 统一返回值
+     */
+    @GetMapping("/{id}")
+    public ResultInfo<DepartmentDto> getInfo(@PathVariable("id") String id) {
+        return ResultInfo.build(departmentMasterService.getInfoById(id));
+    }
+
 }
