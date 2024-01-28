@@ -10,5 +10,7 @@ public class TokenDto {
 
     private String expire;
 
+    private String userName;
+
     private Boolean editPassword = Boolean.FALSE;
 }

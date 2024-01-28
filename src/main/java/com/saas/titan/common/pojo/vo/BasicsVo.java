@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class BasicsVo {
 
-    private String page;
+    private long page;
 
-    private String size;
+    private long size;
 
 }

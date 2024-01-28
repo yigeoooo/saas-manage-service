@@ -12,7 +12,7 @@ public class TableField {
         /**
          * 刪除標記
          */
-        public static final String DELETED = "deleted";
+        public static final String IS_DELETED = "is_deleted";
         /**
          * 檢索條件
          */
@@ -58,6 +58,14 @@ public class TableField {
          * 國際化語言内容
          */
         public static final String LANGUAGE_CONTENT = "language_content";
+    }
+
+    public static class DepartmentMaster extends CommonField {
+
+        public static final String DEPARTMENT_CODE = "department_code";
+
+        public static final String DEPARTMENT_NAME = "department_name";
+
     }
 
     public static class ScheduleJobLog extends CommonField {

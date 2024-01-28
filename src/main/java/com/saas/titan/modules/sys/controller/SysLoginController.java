@@ -79,6 +79,7 @@ public class SysLoginController {
 
         //生成token，并保存到數據庫
         TokenDto dto = sysUserTokenService.createTempToken(user.getUserId());
+        dto.setUserName(user.getUserName());
         if (user.getInitialPassword().equals(SaltUtils.getUserPasswordBySalt(form.getPassword(), user.getSalt()))){
             dto.setEditPassword(Boolean.TRUE);
         }

@@ -191,13 +191,17 @@ public class Constant {
      */
     public static class DeleteFlag {
         /**
-         * 已刪除
-         */
-        public static final String IS_DELETED = "0";
-        /**
          * 未刪除
          */
-        public static final String NOT_DELETED = "1";
+        public static final String DELETED = "1";
+        /**
+         * 已经刪除
+         */
+        public static final String NOT_DELETED = "0";
+        /**
+         * 逻辑删除列
+         */
+        public static final String COLUM_IS_DELETED = "is_deleted";
     }
 
     //有效
@@ -245,6 +249,7 @@ public class Constant {
     public static final int ONE = 1;
     public static final int TWO = 2;
     public static final int THREE = 3;
+    public static final int FUOR = 4;
     public static final int TEN = 10;
     public static final int TWOHUNDRED = 200;
     public static final int FIFTY = 50;

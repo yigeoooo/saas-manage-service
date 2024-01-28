@@ -9,7 +9,7 @@ public enum ResultCode implements Code {
     /** 異常 */
     ERROR(500, "ERROR", "糟糕！系統發生無法預知的錯誤，請稍後嘗試或聯絡客服人員"),
     /** 未經授權 */
-    UNAUTHORIZED(401, "UNAUTHORIZED", "登錄信息已過期，請重新登錄"),
+    UNAUTHORIZED(401, "UNAUTHORIZED", "登录信息已经过期，请重新登录！"),
     /** 不存在 */
     NOT_FOUND(404, "NOT_FOUND", "不存在"),
     /** 參數錯誤 */

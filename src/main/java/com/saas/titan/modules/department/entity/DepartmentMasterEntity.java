@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import com.saas.titan.common.utils.ShiroUtils;
+import com.saas.titan.modules.department.vo.DepartmentInsertVo;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -16,6 +20,7 @@ import lombok.Data;
  */
 @Data
 @TableName("department_master")
+@Builder
 public class DepartmentMasterEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -60,5 +65,23 @@ public class DepartmentMasterEntity implements Serializable {
 	 * 更新人id
 	 */
 	private String updateUserId;
+
+	/**
+	 * 构建对象
+	 * @param vo 接参对象
+	 * @param departmentCode 科室编码
+	 * @return DepartmentMasterEntity 实体类对象
+	 */
+	public static DepartmentMasterEntity from(DepartmentInsertVo vo, String departmentCode) {
+		return DepartmentMasterEntity
+				.builder()
+				.departmentName(vo.getDepartmentName())
+				.departmentCode(departmentCode)
+				.manager(vo.getManager())
+				.updateTime(LocalDate.now())
+				.insertUserId(ShiroUtils.getLoginId())
+				.updateUserId(ShiroUtils.getLoginId())
+				.build();
+	}
 
 }

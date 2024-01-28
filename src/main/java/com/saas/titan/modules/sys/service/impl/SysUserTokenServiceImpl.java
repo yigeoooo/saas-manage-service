@@ -22,8 +22,8 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
     //12小時後過期
     private final static int EXPIRE = 3600 * 12;
 
-    // 3分鐘後過期
-    private final static int EXPIRE_FIVE_MINUTES = 5;
+    // 60分鐘後過期
+    private final static int EXPIRE_FIVE_MINUTES = 60;
 
     @Autowired
     private IServerTokenService serverTokenService;
