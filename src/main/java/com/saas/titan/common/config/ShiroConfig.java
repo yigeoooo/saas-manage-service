@@ -42,8 +42,7 @@ public class ShiroConfig {
         shiroFilter.setFilters(filters);
 
         Map<String, String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/sys/login", "anon");
-        filterMap.put("/sys/captcha.jpg", "anon");
+        filterMap.put("/sys/**", "anon");
         filterMap.put("/**", "oauth2");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 

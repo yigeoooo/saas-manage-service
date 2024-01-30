@@ -76,7 +76,6 @@ public class SysLoginController {
         user.setUpdateUserId(form.getLoginId());
         user.setUpdateTime(new Date());
         sysUserService.updateById(user);
-
         //生成token，并保存到數據庫
         TokenDto dto = sysUserTokenService.createTempToken(user.getUserId());
         dto.setUserName(user.getUserName());
@@ -86,4 +85,27 @@ public class SysLoginController {
         return ResultInfo.build(dto);
     }
 
+    /**
+     * 发送郵件验证码
+     * @param email 邮箱
+     * @return ResultInfo
+     */
+    @GetMapping("/{email}/{captcha}/{uuid}")
+    public ResultInfo<String> sendEmail(@PathVariable("email") String email,
+                                        @PathVariable("captcha") String captcha,
+                                        @PathVariable("uuid") String uuid) {
+        sysUserService.sendEmail(email, captcha, uuid);
+        return ResultInfo.build();
+    }
+
+    /**
+     * 邮箱验证登录
+     * @param email 邮箱
+     * @return ResultInfo
+     */
+    @GetMapping("/login/{email}/{code}")
+    public ResultInfo<TokenDto> loginByEmail(@PathVariable("email") String email,
+                                             @PathVariable("code") String code) {
+        return ResultInfo.build(sysUserService.loginByEmail(email, code));
+    }
 }

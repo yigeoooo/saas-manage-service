@@ -28,7 +28,7 @@ spring:
       max-request-size: 10GB
       enabled: true
   redis:
-    open: false  # 是否开启redis缓存  true开启   false关闭
+    open: true  # 是否开启redis缓存  true开启   false关闭
     database: 0
     host: 47.109.49.39
     port: 6379
@@ -44,6 +44,21 @@ spring:
     throw-exception-if-no-handler-found: true
 #  resources:
 #    add-mappings: false
+  mail:
+    host: smtp.qq.com
+    protocol: smtp
+    default-encoding: utf-8
+    username: 632084210@qq.com
+    password: xkooerrtsdgtbcff
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
 
 
 #mybatis

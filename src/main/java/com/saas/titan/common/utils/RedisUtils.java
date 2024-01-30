@@ -29,7 +29,7 @@ public class RedisUtils {
     /**  默認過期時長，單位：秒 */
     public final static long DEFAULT_EXPIRE = 60 * 60 * 24;
     /**  不設置過期時長 */
-    public final static long NOT_EXPIRE = -1;
+    public final static long    NOT_EXPIRE = -1;
     private final static Gson gson = new Gson();
 
     public void set(String key, Object value, long expire){
@@ -42,6 +42,9 @@ public class RedisUtils {
     public void set(String key, Object value){
         set(key, value, DEFAULT_EXPIRE);
     }
+//    public void set(String key, Object value, long expire) {
+//        redisTemplate.opsForValue().set(key, value, expire, TimeUnit.SECONDS);
+//    }
 
     public <T> T get(String key, Class<T> clazz, long expire) {
         String value = valueOperations.get(key);

@@ -20,7 +20,7 @@ import static com.saas.titan.common.utils.ShiroUtils.getUserId;
  * @since date 2024/1/27
  */
 @RestController
-@RequestMapping("/sys/user")
+@RequestMapping("/system/user")
 public class SysUserController {
 
     @Autowired
