@@ -108,8 +108,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         toEmail.setSubject(title);
         toEmail.setContent(content);
         //存储验证码到redis,5分钟后过期
-//        redisUtils.set(email, code, Constant.FIVE);
-        redisTemplate.opsForValue().set(email, code, Constant.FIVE);
+        redisUtils.set(email, code, Constant.FIVE);
         mailUtils.commonEmail(toEmail);
     }
 
@@ -117,7 +116,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
     public TokenDto loginByEmail(String email, String code) {
         //檢驗郵箱是否存在
         SysUserEntity entity = checkEmail(email);
-        String redisCode = redisUtils.get(email).trim();
+        String redisCode = redisUtils.get(email);
         //检验验证码是否正确
         if (!code.equals(redisCode)) {
             throw new BusinessException("邮箱验证码错误！");

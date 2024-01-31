@@ -35,7 +35,7 @@ public class RedisUtils {
     public void set(String key, Object value, long expire){
         valueOperations.set(key, toJson(value));
         if(expire != NOT_EXPIRE){
-            redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+            redisTemplate.expire(key, expire, TimeUnit.MINUTES);
         }
     }
 
