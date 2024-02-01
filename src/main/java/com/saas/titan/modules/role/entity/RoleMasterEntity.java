@@ -1,15 +1,16 @@
 package com.saas.titan.modules.role.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import lombok.Data;
 
 /**
  * 角色主档
- * 
+ *
  * @author yigeoooo
  * @email 632084210@qq.com
  * @date 2024-02-01 16:43:52
@@ -35,7 +36,7 @@ public class RoleMasterEntity implements Serializable {
 	/**
 	 * 插入时间
 	 */
-	private LocalDateTime insertTime;
+	private LocalDate insertTime;
 	/**
 	 * 最近更新人id
 	 */
@@ -43,7 +44,7 @@ public class RoleMasterEntity implements Serializable {
 	/**
 	 * 最近更新时间
 	 */
-	private LocalDateTime updateTime;
+	private LocalDate updateTime;
 	/**
 	 * 排序标识符
 	 */
@@ -51,6 +52,7 @@ public class RoleMasterEntity implements Serializable {
 	/**
 	 * 逻辑删除标识符（0：正常，1：删除）
 	 */
+	@TableLogic
 	private String isDeleted;
 
 }
