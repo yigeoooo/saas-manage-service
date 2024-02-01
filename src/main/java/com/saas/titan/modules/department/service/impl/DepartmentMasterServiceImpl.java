@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.constant.Constant;
 import com.saas.titan.common.tableField.TableField;
 import com.saas.titan.modules.department.dto.DepartmentDto;
+import com.saas.titan.modules.department.vo.DepartmentEditVo;
 import com.saas.titan.modules.department.vo.DepartmentInsertVo;
 import com.saas.titan.modules.department.vo.DepartmentVo;
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +45,7 @@ public class DepartmentMasterServiceImpl extends ServiceImpl<DepartmentMasterDao
                         + "-",
                 Constant.FUOR);
         //构建实体类对象
-        DepartmentMasterEntity entity = DepartmentMasterEntity.from(param, departmentCode);
+        DepartmentMasterEntity entity = DepartmentMasterEntity.insertFrom(param, departmentCode);
         departmentMasterDao.insert(entity);
     }
 
@@ -56,6 +57,14 @@ public class DepartmentMasterServiceImpl extends ServiceImpl<DepartmentMasterDao
         dto.setDepartmentName(entity.getDepartmentName());
         dto.setManager(entity.getManager());
         return dto;
+    }
+
+    @Override
+    public void edit(DepartmentEditVo vo) {
+        //构建实体类对象
+        DepartmentMasterEntity entity = DepartmentMasterEntity.editFrom(vo);
+        //编辑
+        departmentMasterDao.updateById(entity);
     }
 
     /**

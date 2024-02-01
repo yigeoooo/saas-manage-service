@@ -8,9 +8,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.saas.titan.common.utils.ShiroUtils;
+import com.saas.titan.modules.department.vo.DepartmentEditVo;
 import com.saas.titan.modules.department.vo.DepartmentInsertVo;
 import lombok.Builder;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 科室信息表
@@ -74,7 +76,7 @@ public class DepartmentMasterEntity implements Serializable {
 	 * @param departmentCode 科室编码
 	 * @return DepartmentMasterEntity 实体类对象
 	 */
-	public static DepartmentMasterEntity from(DepartmentInsertVo vo, String departmentCode) {
+	public static DepartmentMasterEntity insertFrom(DepartmentInsertVo vo, String departmentCode) {
 		return DepartmentMasterEntity
 				.builder()
 				.departmentName(vo.getDepartmentName())
@@ -82,6 +84,21 @@ public class DepartmentMasterEntity implements Serializable {
 				.manager(vo.getManager())
 				.updateTime(LocalDate.now())
 				.insertUserId(ShiroUtils.getLoginId())
+				.updateUserId(ShiroUtils.getLoginId())
+				.build();
+	}
+
+	/**
+	 * 编辑构建实体类对象
+	 * @return DepartmentMasterEntity 实体类
+	 */
+	public static DepartmentMasterEntity editFrom(DepartmentEditVo vo) {
+		return DepartmentMasterEntity
+				.builder()
+				.id(vo.getId())
+				.departmentName(vo.getDepartmentName())
+				.manager(StringUtils.isBlank(vo.getManager()) ? null:vo.getManager())
+				.updateTime(LocalDate.now())
 				.updateUserId(ShiroUtils.getLoginId())
 				.build();
 	}

@@ -3,6 +3,7 @@ package com.saas.titan.modules.department.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.department.dto.DepartmentDto;
+import com.saas.titan.modules.department.vo.DepartmentEditVo;
 import com.saas.titan.modules.department.vo.DepartmentInsertVo;
 import com.saas.titan.modules.department.vo.DepartmentVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,12 @@ import com.saas.titan.modules.department.service.DepartmentMasterService;
 @RequestMapping("/department-master")
 public class DepartmentMasterController {
 
+    private final DepartmentMasterService departmentMasterService;
+
     @Autowired
-    private DepartmentMasterService departmentMasterService;
+    public DepartmentMasterController(DepartmentMasterService departmentMasterService) {
+        this.departmentMasterService = departmentMasterService;
+    }
 
     /**
      * 分页条件查询
@@ -75,6 +80,17 @@ public class DepartmentMasterController {
     @GetMapping("/{id}")
     public ResultInfo<DepartmentDto> getInfo(@PathVariable("id") String id) {
         return ResultInfo.build(departmentMasterService.getInfoById(id));
+    }
+
+    /**
+     * 根据id编辑科室信息
+     * @param vo 接参对象vo
+     * @return ResultInfo 统一返回值
+     */
+    @PatchMapping("/edit")
+    public ResultInfo<String> editById(@RequestBody DepartmentEditVo vo) {
+        departmentMasterService.edit(vo);
+        return ResultInfo.build();
     }
 
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.saas.titan.modules.department.dto.DepartmentDto;
 import com.saas.titan.modules.department.entity.DepartmentMasterEntity;
+import com.saas.titan.modules.department.vo.DepartmentEditVo;
 import com.saas.titan.modules.department.vo.DepartmentInsertVo;
 import com.saas.titan.modules.department.vo.DepartmentVo;
 
@@ -35,6 +36,12 @@ public interface DepartmentMasterService extends IService<DepartmentMasterEntity
      * @return DepartmentDto dto对象
      */
     DepartmentDto getInfoById(String id);
+
+    /**
+     * 编辑科室信息
+     * @param vo 接参vo对象
+     */
+    void edit(DepartmentEditVo vo);
 
 }
 
