@@ -1,10 +1,13 @@
 package com.saas.titan.modules.menu.service;
 
+import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.modules.menu.dto.MenuMasterDto;
 import com.saas.titan.modules.menu.entity.MenuMasterEntity;
+
+import java.util.List;
 
 
 /**
@@ -21,6 +24,12 @@ public interface MenuMasterService extends IService<MenuMasterEntity> {
      * @return Page page对象
      */
     Page<MenuMasterDto> getMenuList(BasicsVo vo);
+
+    /**
+     * 获取menuList
+     * @return List
+     */
+    List<Tree<String>> getTreeList();
 
 }
 

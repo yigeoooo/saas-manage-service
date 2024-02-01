@@ -1,18 +1,16 @@
 package com.saas.titan.modules.menu.controller;
 
 
+import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.menu.dto.MenuMasterDto;
 import com.saas.titan.modules.menu.service.MenuMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-
+import java.util.List;
 
 
 /**
@@ -37,6 +35,15 @@ public class MenuMasterController {
     @PostMapping("/page")
     public ResultInfo<Page<MenuMasterDto>> getMenuList(@RequestBody BasicsVo vo) {
         return ResultInfo.build(menuMasterService.getMenuList(vo));
+    }
+
+    /**
+     * 查询所有菜单列表
+     * @return ResultInfo
+     */
+    @GetMapping("/list")
+    public ResultInfo<List<Tree<String>>> getAll() {
+        return ResultInfo.build(menuMasterService.getTreeList());
     }
 
 
