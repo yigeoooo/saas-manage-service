@@ -68,6 +68,14 @@ public class TableField {
 
     }
 
+    public static class MenuContentMaster extends CommonField {
+        public static final String ROLE_ID = "role_id";
+
+        public static final String MENU_PATH = "menuPath";
+
+        public static final String MENU_ICON = "menuIcon";
+    }
+
     public static class ScheduleJobLog extends CommonField {
         /**
          * 任務id

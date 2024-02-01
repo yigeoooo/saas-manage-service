@@ -41,6 +41,10 @@ public class MenuContentEntity implements Serializable {
 	 */
 	private String menuName;
 	/**
+	 * 菜单路径
+	 */
+	private String menuPath;
+	/**
 	 * 菜单图标
 	 */
 	private String menuIcon;
