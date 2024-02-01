@@ -6,10 +6,9 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeNode;
 import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.menu.service.MenuContentService;
+import com.saas.titan.modules.menu.vo.MenuContentVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +34,16 @@ public class MenuContentController {
     @GetMapping("/list")
     public ResultInfo<List<Tree<String>>> getMenuList() {
         return ResultInfo.build(menuContentService.getTreeList());
+    }
+
+    /**
+     * 赋权
+     * @param vo 接参对象
+     * @return ResultInfo 统一返回值
+     */
+    @PostMapping("/permission")
+    public ResultInfo<String> givePermission(@RequestBody MenuContentVo vo) {
+        menuContentService.givePermission(vo);
+        return ResultInfo.build();
     }
 }

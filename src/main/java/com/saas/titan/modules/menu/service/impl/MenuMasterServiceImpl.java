@@ -35,7 +35,8 @@ public class MenuMasterServiceImpl extends ServiceImpl<MenuMasterDao, MenuMaster
         Page<MenuMasterDto> page = new Page<>();
         page.setCurrent(vo.getPage());
         page.setSize(vo.getSize());
-        return menuMasterDao.selectMenuList(page);
+        Page<MenuMasterDto> menuMasterDtoPage = menuMasterDao.selectMenuList(page);
+        return menuMasterDtoPage;
     }
 
     @Override

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -14,6 +16,7 @@ import lombok.Data;
  * @email 632084210@qq.com
  * @date 2024-02-01 16:19:51
  */
+@Builder
 @Data
 @TableName("menu_content")
 public class MenuContentEntity implements Serializable {
@@ -52,5 +55,17 @@ public class MenuContentEntity implements Serializable {
 	 * 排序标识符
 	 */
 	private long sort;
+
+	public static MenuContentEntity from(MenuMasterEntity entity, String roleId) {
+		return MenuContentEntity
+				.builder()
+				.roleId(roleId)
+				.menuId(entity.getMenuId())
+				.menuPath(entity.getMenuPath())
+				.parentMenuId(entity.getParentMenuId())
+				.menuName(entity.getMenuName())
+				.menuIcon(entity.getMenuIcon())
+				.build();
+	}
 
 }

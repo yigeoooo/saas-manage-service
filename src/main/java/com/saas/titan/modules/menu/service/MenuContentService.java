@@ -5,6 +5,7 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeNode;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.saas.titan.modules.menu.entity.MenuContentEntity;
+import com.saas.titan.modules.menu.vo.MenuContentVo;
 
 import java.util.List;
 
@@ -21,6 +22,12 @@ public interface MenuContentService extends IService<MenuContentEntity> {
      * @return List
      */
     List<Tree<String>> getTreeList();
+
+    /**
+     * 角色赋权
+     * @param vo 接参对象
+     */
+    void givePermission(MenuContentVo vo);
 
 }
 

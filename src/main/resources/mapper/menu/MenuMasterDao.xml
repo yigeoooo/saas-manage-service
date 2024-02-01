@@ -10,7 +10,7 @@
         menu_path,
         menu_name,
         menu_icon
-    from menu_content
+    from menu_master
 </select>
 
 </mapper>
