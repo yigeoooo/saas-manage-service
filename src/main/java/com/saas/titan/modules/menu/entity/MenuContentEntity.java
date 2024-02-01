@@ -48,5 +48,9 @@ public class MenuContentEntity implements Serializable {
 	 * 菜单图标
 	 */
 	private String menuIcon;
+	/**
+	 * 排序标识符
+	 */
+	private long sort;
 
 }

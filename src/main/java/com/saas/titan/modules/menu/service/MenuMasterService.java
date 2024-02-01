@@ -1,6 +1,9 @@
 package com.saas.titan.modules.menu.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.saas.titan.common.pojo.vo.BasicsVo;
+import com.saas.titan.modules.menu.dto.MenuMasterDto;
 import com.saas.titan.modules.menu.entity.MenuMasterEntity;
 
 
@@ -12,6 +15,12 @@ import com.saas.titan.modules.menu.entity.MenuMasterEntity;
  * @date 2024-02-01 15:59:09
  */
 public interface MenuMasterService extends IService<MenuMasterEntity> {
+
+    /**
+     * 查询菜单信息
+     * @return Page page对象
+     */
+    Page<MenuMasterDto> getMenuList(BasicsVo vo);
 
 }
 

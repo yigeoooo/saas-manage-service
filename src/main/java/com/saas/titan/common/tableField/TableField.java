@@ -74,6 +74,8 @@ public class TableField {
         public static final String MENU_PATH = "menuPath";
 
         public static final String MENU_ICON = "menuIcon";
+
+        public static final String SORT = "sort";
     }
 
     public static class ScheduleJobLog extends CommonField {

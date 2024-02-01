@@ -33,6 +33,7 @@ public class MenuContentServiceImpl extends ServiceImpl<MenuContentDao, MenuCont
         //条件构造
         QueryWrapper<MenuContentEntity> query = new QueryWrapper<>();
         query.eq(TableField.MenuContentMaster.ROLE_ID, roleId);
+        query.orderByAsc(TableField.MenuContentMaster.SORT);
         List<MenuContentEntity> list = menuContentDao.selectList(query);
         List<TreeNode<String>> res = CollUtil.newArrayList();
         list.forEach(item -> {

@@ -7,11 +7,7 @@ import lombok.Data;
  * @since date 2024/2/1
  */
 @Data
-public class MenuDto {
-    /**
-     * 主键id
-     */
-    private String id;
+public class MenuMasterDto {
     /**
      * 菜单id
      */
@@ -20,6 +16,10 @@ public class MenuDto {
      * 父级菜单id(0则无父级菜单)
      */
     private String parentMenuId;
+    /**
+     * 菜单路由路径
+     */
+    private String menuPath;
     /**
      * 菜单名
      */
