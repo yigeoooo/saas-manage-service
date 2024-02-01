@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.saas.titan.modules.menu.entity.MenuMasterEntity;
 
 
-
 /**
  * 菜单主档表
  *
@@ -13,7 +12,6 @@ import com.saas.titan.modules.menu.entity.MenuMasterEntity;
  * @date 2024-02-01 15:59:09
  */
 public interface MenuMasterService extends IService<MenuMasterEntity> {
-
 
 }
 

@@ -49,7 +49,10 @@ public class SysUserEntity implements Serializable {
      * 谷歌密碼
      */
     private String googleKey;
-
+    /**
+     * 角色id
+     */
+    private String roleId;
     /**
      * 郵箱
      */

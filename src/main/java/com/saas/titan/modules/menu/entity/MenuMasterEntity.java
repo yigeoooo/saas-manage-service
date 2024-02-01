@@ -1,6 +1,7 @@
 package com.saas.titan.modules.menu.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import lombok.Data;
 
 /**
  * 菜单主档表
- * 
+ *
  * @author yigeoooo
  * @email 632084210@qq.com
  * @date 2024-02-01 15:59:09
@@ -23,11 +24,11 @@ public class MenuMasterEntity implements Serializable {
 	 * 主键id
 	 */
 	@TableId
-	private String id;
+	private String menuId;
 	/**
 	 * 父级菜单id(0则无父级菜单)
 	 */
-	private String parentId;
+	private String parentMenuId;
 	/**
 	 * 菜单路径
 	 */
@@ -41,7 +42,7 @@ public class MenuMasterEntity implements Serializable {
 	 */
 	private String menuIcon;
 	/**
-	 * 插入事件
+	 * 插入时间
 	 */
 	private LocalDateTime insertTime;
 	/**
@@ -63,6 +64,7 @@ public class MenuMasterEntity implements Serializable {
 	/**
 	 * 逻辑删除标识符(1删除，正常)
 	 */
+	@TableLogic
 	private String isDeleted;
 
 }
