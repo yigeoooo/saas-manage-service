@@ -22,5 +22,11 @@ public interface RoleMasterService extends IService<RoleMasterEntity> {
      */
     Page<RoleMasterDto> getRoleList(BasicsVo vo);
 
+    /**
+     * 根据roleId修改角色状态
+     * @param roleId 主键roleId
+     */
+    void changeStatus(String roleId);
+
 }
 

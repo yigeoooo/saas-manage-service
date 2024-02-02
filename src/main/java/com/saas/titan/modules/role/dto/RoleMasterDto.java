@@ -27,5 +27,9 @@ public class RoleMasterDto {
      * 插入时间
      */
     private LocalDate insertTime;
+    /**
+     * 状态 1：开启，0关闭
+     */
+    private boolean status;
 
 }

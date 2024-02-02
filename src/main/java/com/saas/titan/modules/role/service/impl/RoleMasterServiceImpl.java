@@ -1,7 +1,9 @@
 package com.saas.titan.modules.role.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.pojo.vo.BasicsVo;
+import com.saas.titan.common.tableField.TableField;
 import com.saas.titan.modules.role.dto.RoleMasterDto;
 import com.saas.titan.modules.role.service.RoleMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +28,11 @@ public class RoleMasterServiceImpl extends ServiceImpl<RoleMasterDao, RoleMaster
         page.setCurrent(vo.getPage());
         page.setSize(vo.getSize());
         return roleMasterDao.getRoleList(page);
+    }
+
+    @Override
+    public void changeStatus(String roleId) {
+        //修改
+        roleMasterDao.changeStatus(roleId);
     }
 }

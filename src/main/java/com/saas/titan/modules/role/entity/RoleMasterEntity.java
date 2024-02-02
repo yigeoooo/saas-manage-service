@@ -50,6 +50,10 @@ public class RoleMasterEntity implements Serializable {
 	 */
 	private Long sort;
 	/**
+	 * 状态 1：开启，0关闭
+	 */
+	private boolean status;
+	/**
 	 * 逻辑删除标识符（0：正常，1：删除）
 	 */
 	@TableLogic

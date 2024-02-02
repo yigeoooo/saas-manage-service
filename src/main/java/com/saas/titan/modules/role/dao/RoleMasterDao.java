@@ -21,4 +21,6 @@ public interface RoleMasterDao extends BaseMapper<RoleMasterEntity> {
 
     Page<RoleMasterDto> getRoleList(@Param("page") Page<RoleMasterDto> page);
 
+    Integer changeStatus(@Param("roleId") String roleId);
+
 }

@@ -6,13 +6,7 @@ import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.role.dto.RoleMasterDto;
 import com.saas.titan.modules.role.service.RoleMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-
-
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -38,4 +32,16 @@ public class RoleMasterController {
     public ResultInfo<Page<RoleMasterDto>> getRoleList(@RequestBody BasicsVo vo) {
         return ResultInfo.build(roleMasterService.getRoleList(vo));
     }
+
+    /**
+     * 修改角色状态
+     * @param roleId 角色id
+     * @return 统一返回值
+     */
+    @GetMapping("/status/{roleId}")
+    public ResultInfo<String> changeStatus(@PathVariable("roleId") String roleId) {
+        roleMasterService.changeStatus(roleId);
+        return ResultInfo.build();
+    }
+
 }
