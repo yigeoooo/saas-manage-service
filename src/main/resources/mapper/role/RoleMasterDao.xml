@@ -12,6 +12,7 @@
             status
         from
             role_master
+        ORDER BY sort ASC
     </select>
 
     <update id="changeStatus">

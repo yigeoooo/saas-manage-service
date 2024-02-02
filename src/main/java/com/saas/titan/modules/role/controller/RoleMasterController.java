@@ -5,6 +5,7 @@ import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.role.dto.RoleMasterDto;
 import com.saas.titan.modules.role.service.RoleMasterService;
+import com.saas.titan.modules.role.vo.RoleMasterAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +42,17 @@ public class RoleMasterController {
     @GetMapping("/status/{roleId}")
     public ResultInfo<String> changeStatus(@PathVariable("roleId") String roleId) {
         roleMasterService.changeStatus(roleId);
+        return ResultInfo.build();
+    }
+
+    /**
+     * 新增角色
+     * @param vo 接参对象
+     * @return 统一返回值
+     */
+    @PostMapping("/insert")
+    public ResultInfo<String> insert(@RequestBody RoleMasterAddVo vo) {
+        roleMasterService.insertRole(vo);
         return ResultInfo.build();
     }
 

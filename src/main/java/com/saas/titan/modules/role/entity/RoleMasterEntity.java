@@ -6,6 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import com.saas.titan.common.utils.ShiroUtils;
+import com.saas.titan.modules.role.vo.RoleMasterAddVo;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -15,6 +19,7 @@ import lombok.Data;
  * @email 632084210@qq.com
  * @date 2024-02-01 16:43:52
  */
+@Builder
 @Data
 @TableName("role_master")
 public class RoleMasterEntity implements Serializable {
@@ -58,5 +63,17 @@ public class RoleMasterEntity implements Serializable {
 	 */
 	@TableLogic
 	private String isDeleted;
+
+
+	public static RoleMasterEntity insertFrom(RoleMasterAddVo vo) {
+		return RoleMasterEntity
+				.builder()
+				.roleName(vo.getRoleName())
+				.sort(vo.getSort())
+				.status(vo.isStatus())
+				.insertUserId(ShiroUtils.getLoginId())
+				.updateUserId(ShiroUtils.getLoginId())
+				.build();
+	}
 
 }

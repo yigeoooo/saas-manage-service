@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.modules.role.dto.RoleMasterDto;
 import com.saas.titan.modules.role.entity.RoleMasterEntity;
+import com.saas.titan.modules.role.vo.RoleMasterAddVo;
 
 
 /**
@@ -28,5 +29,10 @@ public interface RoleMasterService extends IService<RoleMasterEntity> {
      */
     void changeStatus(String roleId);
 
+    /**
+     * 新增角色
+     * @param vo 接参对象
+     */
+    void insertRole(RoleMasterAddVo vo);
 }
 

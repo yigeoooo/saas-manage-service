@@ -6,6 +6,7 @@ import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.tableField.TableField;
 import com.saas.titan.modules.role.dto.RoleMasterDto;
 import com.saas.titan.modules.role.service.RoleMasterService;
+import com.saas.titan.modules.role.vo.RoleMasterAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -34,5 +35,11 @@ public class RoleMasterServiceImpl extends ServiceImpl<RoleMasterDao, RoleMaster
     public void changeStatus(String roleId) {
         //修改
         roleMasterDao.changeStatus(roleId);
+    }
+
+    @Override
+    public void insertRole(RoleMasterAddVo vo) {
+        RoleMasterEntity entity = RoleMasterEntity.insertFrom(vo);
+        roleMasterDao.insert(entity);
     }
 }
