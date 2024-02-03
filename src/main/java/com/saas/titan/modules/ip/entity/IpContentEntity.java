@@ -19,11 +19,14 @@ import lombok.Data;
 @TableName("ip_content")
 public class IpContentEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 主键
+	 */
+	@TableId
+	private String id;
 	/**
 	 * 主机名或ip地址
 	 */
-	@TableId
 	private String hostName;
 	/**
 	 * 请求路径
