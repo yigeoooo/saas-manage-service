@@ -42,7 +42,7 @@ public class IpContentServiceImpl extends ServiceImpl<IpContentDao, IpContentEnt
             query.eq(TableField.IpContent.REQUEST_METHOD, vo.getRequestMethod());
         }
         if (StringUtils.isNotBlank(vo.getRequestPort())) {
-            query.eq(TableField.IpContent.REQUEST_PORT, vo.getRequestPort());
+            query.eq(TableField.IpContent.REQUEST_PORT, vo.getRequestPort().toUpperCase());
         }
         List<String> time = vo.getTime();
         if (!(time.isEmpty())) {
