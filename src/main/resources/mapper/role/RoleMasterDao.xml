@@ -12,6 +12,7 @@
             status
         from
             role_master
+        where is_deleted = "0"
         ORDER BY sort ASC
     </select>
 

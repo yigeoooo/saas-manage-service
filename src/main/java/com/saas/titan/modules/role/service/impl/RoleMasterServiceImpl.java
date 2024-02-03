@@ -42,4 +42,9 @@ public class RoleMasterServiceImpl extends ServiceImpl<RoleMasterDao, RoleMaster
         RoleMasterEntity entity = RoleMasterEntity.insertFrom(vo);
         roleMasterDao.insert(entity);
     }
+
+    @Override
+    public void deleted(String id) {
+        roleMasterDao.deleteById(id);
+    }
 }

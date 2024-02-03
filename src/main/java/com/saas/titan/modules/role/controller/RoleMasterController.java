@@ -56,4 +56,15 @@ public class RoleMasterController {
         return ResultInfo.build();
     }
 
+    /**
+     * 刪除角色
+     * @param id id
+     * @return 统一返回值
+     */
+    @DeleteMapping("/{id}")
+    public ResultInfo<String> delete(@PathVariable("id") String id) {
+        roleMasterService.deleted(id);
+        return ResultInfo.build();
+    }
+
 }

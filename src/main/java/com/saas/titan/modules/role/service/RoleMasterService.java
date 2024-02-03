@@ -34,5 +34,11 @@ public interface RoleMasterService extends IService<RoleMasterEntity> {
      * @param vo 接参对象
      */
     void insertRole(RoleMasterAddVo vo);
+
+    /**
+     * 邏輯刪除角色
+     * @param id 主鍵
+     */
+    void deleted(String id);
 }
 
