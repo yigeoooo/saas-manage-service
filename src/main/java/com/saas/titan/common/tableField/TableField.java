@@ -94,6 +94,16 @@ public class TableField {
         public static final String BAN_STATUS = "ban_status";
     }
 
+    public static class IpContent extends CommonField {
+        public static final String HOST_NAME = "host_name";
+
+        public static final String REQUEST_METHOD = "request_method";
+
+        public static final String REQUEST_PORT = "request_port";
+
+        public static final String INSERT_TIME = "insert_time";
+    }
+
     public static class ScheduleJobLog extends CommonField {
         /**
          * 任務id

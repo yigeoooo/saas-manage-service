@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yigeoooo
@@ -26,8 +28,8 @@ public class IpContentVo extends BasicsVo {
      */
     private String requestPort;
     /**
-     * 发生时间
+     * 时间段
      */
-    private LocalDate insertTime;
+    private List<String> time = new ArrayList<>();
 
 }
