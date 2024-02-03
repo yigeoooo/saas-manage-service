@@ -76,7 +76,7 @@ public class LogAspect {
             Integer count = ipMasterDao.selectCount(new LambdaQueryWrapper<IpMasterEntity>()
                     .exists("select host_name from ip_master where host_name = '" + hostName + "'"));
             if (count == Constant.ZERO) {
-                //存在插入ip信息
+                //不存在插入ip信息
                 IpMasterEntity entity = new IpMasterEntity();
                 entity.setHostName(hostName);
                 entity.setInsertUserId(ShiroUtils.getLoginId());
