@@ -25,6 +25,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -88,6 +89,7 @@ public class LogAspect {
             entity.setRequestUrl(request.getRequestURI());
             entity.setRequestMethod(request.getMethod());
             entity.setRequestPort(String.valueOf(request.getServerPort()));
+            entity.setInsertTime(LocalDate.now());
             //插入
             ipContentDao.insert(entity);
             // 處理請求參數

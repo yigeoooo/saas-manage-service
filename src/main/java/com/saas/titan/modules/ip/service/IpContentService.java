@@ -2,8 +2,12 @@ package com.saas.titan.modules.ip.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.saas.titan.modules.ip.dto.IpContentEchartsCountDto;
+import com.saas.titan.modules.ip.dto.IpContentEchartsListDto;
 import com.saas.titan.modules.ip.entity.IpContentEntity;
 import com.saas.titan.modules.ip.vo.IpContentVo;
+
+import java.util.List;
 
 
 /**
@@ -20,6 +24,19 @@ public interface IpContentService extends IService<IpContentEntity> {
      * @return page对象
      */
     Page<IpContentEntity> page(IpContentVo vo);
+
+    /**
+     * 查询信息
+     * @param hostName 主机名
+     * @return IpContentEchartsCountDto dto
+     */
+    List<IpContentEchartsListDto> getInfo(String hostName);
+
+    /**
+     * @param hostName 主机名
+     * @return dto
+     */
+    IpContentEchartsCountDto getEcharts(String hostName);
 
 }
 
