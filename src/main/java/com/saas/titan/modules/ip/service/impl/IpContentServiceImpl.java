@@ -41,6 +41,10 @@ public class IpContentServiceImpl extends ServiceImpl<IpContentDao, IpContentEnt
 
     private static final String PATCH_METHOD = "PATCH";
 
+    private static final String LINE = "line";
+
+    private static final String TOTAL = "Total";
+
     @Override
     public Page<IpContentEntity> page(IpContentVo vo) {
         //构筑分页对象
@@ -101,8 +105,8 @@ public class IpContentServiceImpl extends ServiceImpl<IpContentDao, IpContentEnt
         query.eq(TableField.IpContent.HOST_NAME, hostName);
         query.eq(TableField.IpContent.REQUEST_METHOD, method);
         LocalDate now = LocalDate.now();
-        query.ge(TableField.IpContent.INSERT_TIME, now.plusDays(-1));
-        query.le(TableField.IpContent.INSERT_TIME, now.plusDays(1));
+        query.ge(TableField.IpContent.INSERT_TIME, now.plusDays(-Constant.ONE));
+        query.le(TableField.IpContent.INSERT_TIME, now.plusDays(Constant.ONE));
         Integer value = ipContentDao.selectCount(query);
         IpContentEchartsListDto dto = new IpContentEchartsListDto();
         dto.setValue(value);
@@ -113,24 +117,24 @@ public class IpContentServiceImpl extends ServiceImpl<IpContentDao, IpContentEnt
     private List<LocalDate> getDays() {
         LocalDate now = LocalDate.now();
         return Arrays.asList(
-                now.plusDays(-6),
-                now.plusDays(-5),
-                now.plusDays(-4),
-                now.plusDays(-3),
-                now.plusDays(-2),
-                now.plusDays(-1),
+                now.plusDays(-Constant.SIX),
+                now.plusDays(-Constant.FIVE),
+                now.plusDays(-Constant.FUOR),
+                now.plusDays(-Constant.THREE),
+                now.plusDays(-Constant.TWO),
+                now.plusDays(-Constant.ONE),
                 now);
     }
 
     private EchartsDto getDto(String method, String hostName) {
         EchartsDto dto = new EchartsDto();
         dto.setName(method);
-        dto.setType("line");
-        dto.setStack("Total");
+        dto.setType(LINE);
+        dto.setStack(TOTAL);
         //查询该方法过去七天数据
         List<Integer> list = new ArrayList<>();
         LocalDate now = LocalDate.now();
-        for (int i = 6; i >= 0; i--) {
+        for (int i = Constant.SIX; i >= Constant.ZERO; i--) {
             QueryWrapper<IpContentEntity> query = new QueryWrapper<>();
             query.eq(TableField.IpContent.HOST_NAME, hostName);
             query.eq(TableField.IpContent.REQUEST_METHOD, method);
