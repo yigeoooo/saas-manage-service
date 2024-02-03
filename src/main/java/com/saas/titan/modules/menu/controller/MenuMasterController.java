@@ -7,6 +7,7 @@ import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.menu.dto.MenuMasterDto;
 import com.saas.titan.modules.menu.service.MenuMasterService;
+import com.saas.titan.modules.menu.vo.MenuMasterAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,5 +47,14 @@ public class MenuMasterController {
         return ResultInfo.build(menuMasterService.getTreeList());
     }
 
-
+    /**
+     * 插入菜单信息
+     * @param vo 接参对象
+     * @return 统一返回值
+     */
+    @PostMapping("/insert")
+    public ResultInfo<String> insert(@RequestBody MenuMasterAddVo vo) {
+        menuMasterService.insert(vo);
+        return ResultInfo.build();
+    }
 }

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.modules.menu.dto.MenuMasterDto;
 import com.saas.titan.modules.menu.entity.MenuMasterEntity;
+import com.saas.titan.modules.menu.vo.MenuMasterAddVo;
 
 import java.util.List;
 
@@ -30,6 +31,12 @@ public interface MenuMasterService extends IService<MenuMasterEntity> {
      * @return List
      */
     List<Tree<String>> getTreeList();
+
+    /**
+     * 新增菜单
+     * @param vo 接参对象
+     */
+    void insert(MenuMasterAddVo vo);
 
 }
 

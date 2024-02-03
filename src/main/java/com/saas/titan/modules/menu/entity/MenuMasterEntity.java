@@ -6,6 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.saas.titan.common.utils.ShiroUtils;
+import com.saas.titan.modules.menu.vo.MenuMasterAddVo;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -15,6 +19,7 @@ import lombok.Data;
  * @email 632084210@qq.com
  * @date 2024-02-01 15:59:09
  */
+@Builder
 @Data
 @TableName("menu_master")
 public class MenuMasterEntity implements Serializable {
@@ -66,5 +71,18 @@ public class MenuMasterEntity implements Serializable {
 	 */
 	@TableLogic
 	private String isDeleted;
+
+	public static MenuMasterEntity fromAdd(MenuMasterAddVo vo) {
+		return MenuMasterEntity
+				.builder()
+				.menuId(vo.getMenuId())
+				.parentMenuId(vo.getParentMenuId())
+				.menuName(vo.getMenuName())
+				.menuPath(vo.getMenuPath())
+				.menuIcon(vo.getMenuIcon())
+				.insertUserId(ShiroUtils.getLoginId())
+				.updateUserId(ShiroUtils.getLoginId())
+				.build();
+	}
 
 }

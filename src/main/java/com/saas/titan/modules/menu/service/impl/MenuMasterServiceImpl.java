@@ -9,6 +9,7 @@ import com.saas.titan.common.tableField.TableField;
 import com.saas.titan.common.utils.TreeNodeUtils;
 import com.saas.titan.modules.menu.dto.MenuMasterDto;
 import com.saas.titan.modules.menu.service.MenuMasterService;
+import com.saas.titan.modules.menu.vo.MenuMasterAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +56,13 @@ public class MenuMasterServiceImpl extends ServiceImpl<MenuMasterDao, MenuMaster
             res.add(node);
         });
         return TreeNodeUtils.getTree(res);
+    }
+
+    @Override
+    public void insert(MenuMasterAddVo vo) {
+        //构建实体类对象
+        MenuMasterEntity entity = MenuMasterEntity.fromAdd(vo);
+        //插入
+        menuMasterDao.insert(entity);
     }
 }
