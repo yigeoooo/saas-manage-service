@@ -20,5 +20,11 @@ public interface IpMasterService extends IService<IpMasterEntity> {
      */
     Page<IpMasterEntity> getIpMasterList(IpMasterVo vo);
 
+    /**
+     * 修改封禁状态
+     * @param id 主键
+     */
+    void changeStatus(String id);
+
 }
 

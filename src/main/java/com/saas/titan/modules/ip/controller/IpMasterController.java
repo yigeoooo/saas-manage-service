@@ -32,4 +32,14 @@ public class IpMasterController {
         return ResultInfo.build(ipMasterService.getIpMasterList(vo));
     }
 
+    /**
+     * 修改封禁状态
+     * @param id 主键
+     * @return 统一返回值
+     */
+    @GetMapping("/{id}")
+    public ResultInfo<String> changStatus(@PathVariable("id") String id) {
+        ipMasterService.changeStatus(id);
+        return ResultInfo.build();
+    }
 }

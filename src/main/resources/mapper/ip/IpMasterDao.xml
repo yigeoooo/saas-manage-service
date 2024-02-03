@@ -3,6 +3,11 @@
 
 <mapper namespace="com.saas.titan.modules.ip.dao.IpMasterDao">
 
-
+    <update id="changeStatus">
+        update ip_master
+        set
+            ban_status = !ban_status
+        where id = #{id}
+    </update>
 
 </mapper>

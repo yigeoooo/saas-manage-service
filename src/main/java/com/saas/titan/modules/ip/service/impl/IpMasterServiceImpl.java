@@ -35,4 +35,9 @@ public class IpMasterServiceImpl extends ServiceImpl<IpMasterDao, IpMasterEntity
         query.eq(TableField.IpMaster.BAN_STATUS, vo.getBanStatus());
         return ipMasterDao.selectPage(page, query);
     }
+
+    @Override
+    public void changeStatus(String id) {
+        ipMasterDao.changeStatus(id);
+    }
 }
