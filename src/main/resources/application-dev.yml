@@ -54,18 +54,18 @@ spring:
       # 严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
       strict: true
       datasource:
-        # datasource1
+        # datasource1 系统相关
         datasource1:
           url: jdbc:mysql://47.109.49.39:3306/TITAN01?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
           username: root
           password: WJY20011219
           driver-class-name: com.mysql.cj.jdbc.Driver
-#        # datasource2
-#        datasource2:
-#          url: jdbc:mysql://47.109.49.39:3306/TITAN02?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-#          username: root
-#          password: WJY20011219
-#          driver-class-name: com.mysql.cj.jdbc.Driver
+        # datasource2 资源相关
+        datasource2:
+          url: jdbc:mysql://47.109.49.39:3306/TITAN02?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: WJY20011219
+          driver-class-name: com.mysql.cj.jdbc.Driver
 #        # datasource3
 #        datasource3:
 #          url: jdbc:mysql://47.109.49.39:3306/TITAN03?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai

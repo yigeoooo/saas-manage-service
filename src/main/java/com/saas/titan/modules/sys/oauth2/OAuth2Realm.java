@@ -52,7 +52,6 @@ public class OAuth2Realm extends AuthorizingRealm {
 
         // 查詢用戶訊息
         SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
-//
         // 帳號鎖定
         return new SimpleAuthenticationInfo(user, accessToken, getName());
     }

@@ -1,5 +1,6 @@
 package com.saas.titan.modules.department.dao;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.modules.department.dto.DepartmentDto;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Mapper
+@DS("datasource2")
 public interface DepartmentMasterDao extends BaseMapper<DepartmentMasterEntity> {
 
     Page<DepartmentDto> getPage(@Param("page") Page<DepartmentMasterEntity> page,
