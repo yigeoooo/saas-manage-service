@@ -12,6 +12,5 @@ import com.saas.titan.modules.ip.entity.IpContentEntity;
  * @date 2024-02-03 11:02:07
  */
 public interface IpContentService extends IService<IpContentEntity> {
-
 }
 

@@ -88,6 +88,12 @@ public class TableField {
         public static final String ROLE_ID = "role_id";
     }
 
+    public static class IpMaster extends CommonField {
+        public static final String HOST_NAME = "host_name";
+
+        public static final String BAN_STATUS = "ban_status";
+    }
+
     public static class ScheduleJobLog extends CommonField {
         /**
          * 任務id

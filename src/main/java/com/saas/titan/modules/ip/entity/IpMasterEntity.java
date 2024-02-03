@@ -37,7 +37,7 @@ public class IpMasterEntity implements Serializable {
 	 */
 	private String insertUserId;
 	/**
-	 * 封禁状态（1：封禁，0：正常）
+	 * 封禁状态（1：正常，0：封禁）
 	 */
 	private Boolean banStatus;
 

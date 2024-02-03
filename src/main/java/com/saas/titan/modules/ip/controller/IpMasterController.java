@@ -1,11 +1,12 @@
 package com.saas.titan.modules.ip.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.saas.titan.common.utils.ResultInfo;
+import com.saas.titan.modules.ip.entity.IpMasterEntity;
 import com.saas.titan.modules.ip.service.IpMasterService;
+import com.saas.titan.modules.ip.vo.IpMasterVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -20,5 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class IpMasterController {
     @Autowired
     private IpMasterService ipMasterService;
+
+    /**
+     * 查询访问主机列表
+     * @param vo 接参对象
+     * @return 统一返回值
+     */
+    @PostMapping("/page")
+    public ResultInfo<Page<IpMasterEntity>> getPage(@RequestBody IpMasterVo vo) {
+        return ResultInfo.build(ipMasterService.getIpMasterList(vo));
+    }
 
 }
