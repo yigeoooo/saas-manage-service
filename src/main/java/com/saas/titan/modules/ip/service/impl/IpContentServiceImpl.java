@@ -45,6 +45,8 @@ public class IpContentServiceImpl extends ServiceImpl<IpContentDao, IpContentEnt
 
     private static final String TOTAL = "Total";
 
+    private static final String PATTERN = "yyyy-MM-dd";
+
     @Override
     public Page<IpContentEntity> page(IpContentVo vo) {
         //构筑分页对象
@@ -64,8 +66,8 @@ public class IpContentServiceImpl extends ServiceImpl<IpContentDao, IpContentEnt
         }
         List<String> time = vo.getTime();
         if (!(time.isEmpty())) {
-            Date start = DateUtils.stringToDate(time.get(0), "yyyy-MM-dd");
-            Date end = DateUtils.stringToDate(time.get(1), "yyyy-MM-dd");
+            Date start = DateUtils.stringToDate(time.get(Constant.ZERO), PATTERN);
+            Date end = DateUtils.stringToDate(time.get(Constant.ONE), PATTERN);
             query.ge(TableField.IpContent.INSERT_TIME, start);
             query.le(TableField.IpContent.INSERT_TIME, end);
         }
