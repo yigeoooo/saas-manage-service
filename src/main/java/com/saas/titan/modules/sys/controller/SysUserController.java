@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.saas.titan.common.utils.ShiroUtils.getLoginId;
 import static com.saas.titan.common.utils.ShiroUtils.getUserId;
 
 /**
@@ -32,7 +33,7 @@ public class SysUserController {
     @PostMapping("/save")
     public ResultInfo<String> save(@RequestBody SysUserSaveVo user) {
         ValidatorUtils.validateEntity(user, AddGroup.class);
-        user.setInsertUserId(getUserId());
+        user.setInsertUserId(getLoginId());
         boolean result = sysUserService.saveUser(user);
         if (result) {
             return ResultInfo.build();

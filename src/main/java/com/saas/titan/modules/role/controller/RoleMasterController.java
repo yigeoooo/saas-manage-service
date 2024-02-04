@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.role.dto.RoleMasterDto;
+import com.saas.titan.modules.role.dto.RoleMasterListDto;
 import com.saas.titan.modules.role.service.RoleMasterService;
 import com.saas.titan.modules.role.vo.RoleMasterAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -65,6 +68,15 @@ public class RoleMasterController {
     public ResultInfo<String> delete(@PathVariable("id") String id) {
         roleMasterService.deleted(id);
         return ResultInfo.build();
+    }
+
+    /**
+     * 角色下拉框資源
+     * @return 统一返回值
+     */
+    @GetMapping("/list")
+    public ResultInfo<List<RoleMasterListDto>> getList() {
+        return ResultInfo.build(roleMasterService.getList());
     }
 
 }

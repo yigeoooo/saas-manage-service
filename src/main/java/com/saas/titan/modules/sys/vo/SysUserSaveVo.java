@@ -43,5 +43,9 @@ public class SysUserSaveVo implements Serializable {
      * 上次更改帳號的日期 YYYY-MM-DD
      */
     private String lastChangePwdDate;
+    /**
+     * 角色ID
+     */
+    private String roleId;
 
 }

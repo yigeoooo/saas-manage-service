@@ -17,6 +17,7 @@ import com.saas.titan.modules.sys.service.SysUserService;
 import com.saas.titan.modules.sys.service.SysUserTokenService;
 import com.saas.titan.modules.sys.verify.GoogleAuthenticator;
 import com.saas.titan.modules.sys.vo.SysUserSaveVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,7 @@ import static com.saas.titan.common.utils.ShiroUtils.getLoginId;
  *
  * @author Mark
  */
+@Slf4j
 @Service("sysUserService")
 public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> implements SysUserService {
 
@@ -73,6 +75,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         user.setUserName(userForm.getUserName());
         user.setTelephone(userForm.getTelephone());
         user.setEmail(userForm.getEmail());
+        user.setRoleId(userForm.getRoleId());
         Date sysDate = new Date();
         user.setSalt(SaltUtils.getSaltKey());
         // 根據加密鹽生成用戶最終密碼
@@ -103,12 +106,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         ToEmail toEmail = new ToEmail();
         String[] toPerson = {email};
         toEmail.setTos(toPerson);
-        String title = "TITAN后台管理系统";
-        String content = "本次您的登录验证码为" + code;
+        String title = "TITAN SAAS后台管理系统";
+        String content = "本次您的登录验证码为" + code + "," + "有效期为5分钟！";
         toEmail.setSubject(title);
         toEmail.setContent(content);
         //存储验证码到redis,5分钟后过期
         redisUtils.set(email, code, Constant.FIVE);
+        log.info("{}的邮箱登录验证码为：{}",email, code);
         mailUtils.commonEmail(toEmail);
     }
 

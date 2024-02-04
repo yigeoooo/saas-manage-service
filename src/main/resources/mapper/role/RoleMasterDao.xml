@@ -24,4 +24,15 @@
             role_id = #{roleId};
     </update>
 
+    <select id="getList" resultType="com.saas.titan.modules.role.dto.RoleMasterListDto">
+        select
+            role_id,
+            role_name
+        from
+            role_master
+        where
+            is_deleted = '0'
+        and status = '1'
+    </select>
+
 </mapper>

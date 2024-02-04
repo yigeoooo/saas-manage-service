@@ -4,8 +4,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.modules.role.dto.RoleMasterDto;
+import com.saas.titan.modules.role.dto.RoleMasterListDto;
 import com.saas.titan.modules.role.entity.RoleMasterEntity;
 import com.saas.titan.modules.role.vo.RoleMasterAddVo;
+
+import java.util.List;
 
 
 /**
@@ -40,5 +43,11 @@ public interface RoleMasterService extends IService<RoleMasterEntity> {
      * @param id 主鍵
      */
     void deleted(String id);
+
+    /**
+     * 查詢角色信息
+     * @return RoleMasterListDto dto
+     */
+    List<RoleMasterListDto> getList();
 }
 

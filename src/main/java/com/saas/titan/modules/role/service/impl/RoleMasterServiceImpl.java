@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.tableField.TableField;
 import com.saas.titan.modules.role.dto.RoleMasterDto;
+import com.saas.titan.modules.role.dto.RoleMasterListDto;
 import com.saas.titan.modules.role.service.RoleMasterService;
 import com.saas.titan.modules.role.vo.RoleMasterAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.saas.titan.modules.role.dao.RoleMasterDao;
 import com.saas.titan.modules.role.entity.RoleMasterEntity;
 
+import java.util.List;
 
 
 @Service("roleMasterService")
@@ -46,5 +48,10 @@ public class RoleMasterServiceImpl extends ServiceImpl<RoleMasterDao, RoleMaster
     @Override
     public void deleted(String id) {
         roleMasterDao.deleteById(id);
+    }
+
+    @Override
+    public List<RoleMasterListDto> getList() {
+        return roleMasterDao.getList();
     }
 }
