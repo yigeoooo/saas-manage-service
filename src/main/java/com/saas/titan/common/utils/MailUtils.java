@@ -23,9 +23,6 @@ public class MailUtils {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Autowired
-    private RedisUtils redisUtils;
-
     @Value("${spring.mail.username}")
     private String from;
 

@@ -4,12 +4,14 @@ server:
     uri-encoding: UTF-8
     max-threads: 1000
     min-spare-threads: 30
-  port: 80
+  port: 520
   connection-timeout: 5000ms
   servlet:
     context-path: /saas-manage-service
 
 spring:
+  freemarker:
+    check-template-location: false
   application:
     name: saas-manage-service
   # 环境 dev|test|prod
@@ -53,11 +55,13 @@ spring:
     test-connection: true
     properties:
       mail:
+        debug: true
         smtp:
           auth: true
           starttls:
             enable: true
             required: true
+    port: 465
 
 
 

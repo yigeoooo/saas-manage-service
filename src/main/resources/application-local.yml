@@ -150,4 +150,7 @@ log:
 
 fileUpload:
   fileUri: "http://localhost:80/payment-admin/file/"
-  basePath: "C:\\paymentupload\\"
+  basePath: "/home/saas/fileupload/"
+  saasFileResource: "file\\{0}\\{1}\\"
+
+
