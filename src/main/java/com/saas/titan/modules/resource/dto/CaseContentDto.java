@@ -25,5 +25,9 @@ public class CaseContentDto {
      * 内容
      */
     private String content;
+    /**
+     * 状态
+     */
+    private boolean status;
 
 }

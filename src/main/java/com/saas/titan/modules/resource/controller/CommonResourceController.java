@@ -38,7 +38,7 @@ public class CommonResourceController {
     public ResultInfo<String> upload(MultipartFile file,
                                      @PathVariable("uuid") String uuid) {
         commonResourceService.commonResourcePhotoUpload(file, uuid);
-        return ResultInfo.build();
+        return ResultInfo.build(uuid);
     }
 
     /**

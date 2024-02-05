@@ -8,7 +8,8 @@
             cr.resource_id,
             cc.title,
             cc.author,
-            cc.content
+            cc.content,
+            cr.status
         from common_resource cr
         inner join case_content cc
         on cr.resource_id = cc.resource_id

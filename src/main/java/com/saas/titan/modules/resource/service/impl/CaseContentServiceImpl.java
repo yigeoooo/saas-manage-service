@@ -61,7 +61,6 @@ public class CaseContentServiceImpl extends ServiceImpl<CaseContentDao, CaseCont
             query.like("cc." + TableField.CaseContent.AUTHOR, vo.getAuthor());
         }
         query.eq(TableField.CommonResource.IS_DELETED, Constant.STR_ZERO);
-        query.eq(TableField.CommonResource.STATUS, Constant.ONE);
         return caseContentDao.getPage(page, query);
     }
 }

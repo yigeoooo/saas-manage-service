@@ -91,7 +91,6 @@ public class CommonResourceServiceImpl extends ServiceImpl<CommonResourceDao, Co
         //查询读取文件
         QueryWrapper<CommonResourceEntity> query = new QueryWrapper<>();
         query.eq(TableField.CommonResource.IS_DELETED, Constant.STR_ZERO);
-        query.eq(TableField.CommonResource.STATUS, Constant.ONE);
         query.eq(TableField.CommonResource.RESOURCE_ID, resourceId);
         CommonResourceEntity entity = commonResourceDao.selectOne(query);
         //拼接文件路径
