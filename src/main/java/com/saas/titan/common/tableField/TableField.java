@@ -86,6 +86,16 @@ public class TableField {
 
     public static class CommonResource extends CommonField {
         public static final String RESOURCE_ID = "resource_id";
+
+        public static final String IS_DELETED = "is_deleted";
+
+        public static final String STATUS = "status";
+    }
+
+    public static class CaseContent extends CommonField {
+        public static final String TITLE = "title";
+
+        public static final String AUTHOR = "author";
     }
 
     public static class RoleMaster extends CommonField {
