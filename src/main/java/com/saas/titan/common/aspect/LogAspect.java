@@ -72,7 +72,7 @@ public class LogAspect {
             requestLog.append("請求SERVER_NAME = {").append(request.getServerName()).append("},\t");
             requestLog.append("請求PORT = {").append(request.getServerPort()).append("}\t");
             //插入ip信息主表与从表
-            String hostName = request.getServerName();
+            String hostName = IPUtils.getIpAddr(request);
             //判断host_name是否存在
             Integer count = ipMasterDao.selectCount(new LambdaQueryWrapper<IpMasterEntity>()
                     .exists("select host_name from ip_master where host_name = '" + hostName + "'"));
