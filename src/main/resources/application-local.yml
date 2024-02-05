@@ -138,7 +138,7 @@ spring:
 #      acknowledge-mode: manual
 
 logging:
-  path: /home/saas/manager/logs/service_logs
+  path: /home/saas/manager/logs
 
 logLevel: debug
 
@@ -146,7 +146,7 @@ controller:
   apiHost: http://localhost:8090/
 
 log:
-  basePath: /home/saas/manager/logs/service_logs
+  basePath: /home/saas/manager/logs
 
 fileUpload:
   fileUri: "http://localhost:80/payment-admin/file/"

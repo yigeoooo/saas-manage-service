@@ -150,4 +150,4 @@ log:
 
 fileUpload:
   fileUri: "http://localhost:80/payment-admin/file/"
-  basePath: "C:\\paymentupload\\"
+  basePath: "F:\\upload\\"
