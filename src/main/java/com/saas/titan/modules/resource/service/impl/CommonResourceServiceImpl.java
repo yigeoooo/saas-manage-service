@@ -101,7 +101,12 @@ public class CommonResourceServiceImpl extends ServiceImpl<CommonResourceDao, Co
         IOUtils.copy(in, response.getOutputStream());
     }
 
-    //获取输入流
+    /**
+     * 获得图片流
+     * @param basePath 图影地址
+     * @return InputStream 输入流
+     * @throws IOException io异常
+     */
     private InputStream getImgInputStream(String basePath) throws IOException {
         return Files.newInputStream(new File(basePath).toPath());
     }
