@@ -84,6 +84,10 @@ public class TableField {
         public static final String MENU_ID = "menu_id";
     }
 
+    public static class CommonResource extends CommonField {
+        public static final String RESOURCE_ID = "resource_id";
+    }
+
     public static class RoleMaster extends CommonField {
         public static final String ROLE_ID = "role_id";
     }
@@ -109,17 +113,6 @@ public class TableField {
          * 任務id
          */
         public static final String JOB_ID = "job_id";
-    }
-
-    public static class CommonResource extends CommonField {
-        /**
-         * 母語id
-         */
-        public static final String BUSINESS_ID = "business_id";
-        /**
-         * 母語名稱
-         */
-        public static final String RESOURCE_ID = "resource_id";
     }
 
     public static class ScheduleJob extends CommonField {

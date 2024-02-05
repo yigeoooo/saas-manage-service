@@ -1,8 +1,12 @@
 package com.saas.titan.modules.resource.controller;
 
 
+import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.resource.service.CaseContentService;
+import com.saas.titan.modules.resource.vo.CaseContentAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +28,15 @@ public class CaseContentController {
     @Autowired
     private CaseContentService caseContentService;
 
-
+    /**
+     * 新增case案例
+     * @param vo 接参对象
+     * @return 统一返回值
+     */
+    @PostMapping("/insert")
+    public ResultInfo<String> insert(@RequestBody CaseContentAddVo vo) {
+        caseContentService.insert(vo);
+        return ResultInfo.build();
+    }
 
 }
