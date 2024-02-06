@@ -80,8 +80,12 @@ public class LogAspect {
                 //不存在插入ip信息
                 IpMasterEntity entity = new IpMasterEntity();
                 entity.setHostName(hostName);
-                entity.setInsertUserId(ShiroUtils.getLoginId());
-                ipMasterDao.insert(entity);
+                try {
+                    entity.setInsertUserId(ShiroUtils.getLoginId());
+                    ipMasterDao.insert(entity);
+                } catch (Exception e) {
+                    log.warn("首次登录，不记录IP信息！");
+                }
             }
             //记录操作记录
             IpContentEntity entity = new IpContentEntity();

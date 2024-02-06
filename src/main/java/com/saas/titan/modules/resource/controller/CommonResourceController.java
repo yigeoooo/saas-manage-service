@@ -64,7 +64,6 @@ public class CommonResourceController {
             log.info("成功资源ID为{}的图片流！", resourceId);
         } catch (IOException e) {
             log.error("获取图片流错误！");
-            throw new BusinessException("获取图片流错误！");
         }
     }
 

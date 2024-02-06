@@ -45,7 +45,7 @@ public class CommonResourceServiceImpl extends ServiceImpl<CommonResourceDao, Co
             dir.mkdirs();
         }
         try {
-            file.transferTo(new File(basePath + "\\" + resourceId + ".jpeg"));
+            file.transferTo(new File(basePath + "/" + resourceId + ".jpeg"));
             log.info("上传成功！路径是{}", basePath + "/" + resourceId + ".jpeg");
             log.info("文件资源ID是{}", resourceId);
             //存储资源信息

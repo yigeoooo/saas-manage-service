@@ -76,13 +76,13 @@ spring:
       datasource:
         # datasource1 系统相关
         datasource1:
-          url: jdbc:mysql://47.109.49.39:3306/TITAN01?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+          url: jdbc:mysql://47.109.49.39:3306/TITAN01_LOCAL?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
           username: root
           password: WJY20011219
           driver-class-name: com.mysql.cj.jdbc.Driver
         # datasource2 资源相关
         datasource2:
-          url: jdbc:mysql://47.109.49.39:3306/TITAN02?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+          url: jdbc:mysql://47.109.49.39:3306/TITAN02_LOCAL?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
           username: root
           password: WJY20011219
           driver-class-name: com.mysql.cj.jdbc.Driver
