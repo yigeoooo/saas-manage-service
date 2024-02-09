@@ -7,6 +7,7 @@ import com.saas.titan.modules.approve.dto.VacationMasterAllPageDto;
 import com.saas.titan.modules.approve.dto.VacationMasterPageDto;
 import com.saas.titan.modules.approve.entity.VacationMasterEntity;
 import com.saas.titan.modules.approve.vo.VacationMasterInsertVo;
+import com.saas.titan.modules.approve.vo.VacationPageVo;
 
 
 /**
@@ -38,6 +39,13 @@ public interface VacationMasterService extends IService<VacationMasterEntity> {
     Page<VacationMasterAllPageDto> getAllPage(BasicsVo vo);
 
     /**
+     * 历史申请列表
+     * @param vo 接参对象
+     * @return
+     */
+    Page<VacationMasterPageDto> getList(VacationPageVo vo);
+
+    /**
      * 通过请假申请
      * @param userId 系统用户id
      */
@@ -48,6 +56,7 @@ public interface VacationMasterService extends IService<VacationMasterEntity> {
      * @param userId 系统用户id
      */
     void rejectStatus(String userId);
+
 
 }
 

@@ -8,6 +8,7 @@ import com.saas.titan.modules.approve.dto.VacationMasterAllPageDto;
 import com.saas.titan.modules.approve.dto.VacationMasterPageDto;
 import com.saas.titan.modules.approve.service.VacationMasterService;
 import com.saas.titan.modules.approve.vo.VacationMasterInsertVo;
+import com.saas.titan.modules.approve.vo.VacationPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,6 +59,16 @@ public class VacationMasterController {
     }
 
     /**
+     * 查询历史审批记录
+     * @param vo 接参对象
+     * @return 统一返回值
+     */
+    @PostMapping("/list")
+    public ResultInfo<Page<VacationMasterPageDto>> getList(@RequestBody VacationPageVo vo) {
+        return ResultInfo.build(vacationMasterService.getList(vo));
+    }
+
+    /**
      * 通过请假
      * @param userId 系统用户id
      * @return 统一返回值
@@ -78,5 +89,7 @@ public class VacationMasterController {
         vacationMasterService.rejectStatus(userId);
         return ResultInfo.build();
     }
+
+
 
 }

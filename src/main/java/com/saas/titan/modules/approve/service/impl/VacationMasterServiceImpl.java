@@ -5,12 +5,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.constant.Constant;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.tableField.TableField;
-import com.saas.titan.common.utils.DateUtils;
 import com.saas.titan.common.utils.ShiroUtils;
+import com.saas.titan.common.utils.StringUtils;
 import com.saas.titan.modules.approve.dto.VacationMasterAllPageDto;
 import com.saas.titan.modules.approve.dto.VacationMasterPageDto;
 import com.saas.titan.modules.approve.service.VacationMasterService;
 import com.saas.titan.modules.approve.vo.VacationMasterInsertVo;
+import com.saas.titan.modules.approve.vo.VacationPageVo;
 import com.saas.titan.modules.sys.dao.SysUserDao;
 import com.saas.titan.modules.sys.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,30 @@ public class VacationMasterServiceImpl extends ServiceImpl<VacationMasterDao, Va
     }
 
     @Override
+    public Page<VacationMasterPageDto> getList(VacationPageVo vo) {
+        Page<VacationMasterEntity> page = new Page<>(vo.getPage(), vo.getSize());
+        QueryWrapper<VacationMasterEntity> query = new QueryWrapper<>();
+        query.orderByDesc(TableField.VacationMaster.INSERT_TIME);
+        if (StringUtils.isNotBlank(vo.getStatus())) {
+            query.eq(TableField.VacationMaster.STATUS, vo.getStatus());
+        } else {
+            query.eq(TableField.VacationMaster.STATUS, Constant.STR_ONE)
+                    .or()
+                    .eq(TableField.VacationMaster.STATUS, Constant.STR_TWO);
+        }
+        Page<VacationMasterPageDto> pages = vacationMasterDao.getList(page, query);
+        List<VacationMasterPageDto> records = pages.getRecords();
+        records.forEach(item -> {
+            QueryWrapper<SysUserEntity> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(TableField.VacationMaster.USER_ID, item.getUserId());
+            SysUserEntity entity = sysUserDao.selectOne(queryWrapper);
+            item.setUserName(entity.getUserName());
+        });
+        pages.setRecords(records);
+        return pages;
+    }
+
+    @Override
     public void passStatus(String userId) {
         vacationMasterDao.passStatus(userId);
     }
@@ -88,4 +113,5 @@ public class VacationMasterServiceImpl extends ServiceImpl<VacationMasterDao, Va
     public void rejectStatus(String userId) {
         vacationMasterDao.rejectStatus(userId);
     }
+
 }

@@ -10,7 +10,14 @@ import java.time.LocalDate;
  */
 @Data
 public class VacationMasterPageDto {
-
+    /**
+     * 系统用户id
+     */
+    private String userId;
+    /**
+     * 系统用户名
+     */
+    private String userName;
     /**
      * 请假类型（0:事假，1:婚假，2:丧假，3:病假，4:调休）
      */

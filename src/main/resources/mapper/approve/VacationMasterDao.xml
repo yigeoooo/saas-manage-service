@@ -29,6 +29,20 @@
         ${ew.customSqlSegment}
     </select>
 
+    <select id="getList" resultType="com.saas.titan.modules.approve.dto.VacationMasterPageDto">
+        select
+            begin_time,
+            end_time,
+            days,
+            reason,
+            types,
+            user_id,
+            status
+        from
+            vacation_master
+                ${ew.customSqlSegment}
+    </select>
+
     <update id="passStatus">
         update vacation_master
         set
