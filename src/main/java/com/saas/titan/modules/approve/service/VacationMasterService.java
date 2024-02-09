@@ -37,5 +37,17 @@ public interface VacationMasterService extends IService<VacationMasterEntity> {
      */
     Page<VacationMasterAllPageDto> getAllPage(BasicsVo vo);
 
+    /**
+     * 通过请假申请
+     * @param userId 系统用户id
+     */
+    void passStatus(String userId);
+
+    /**
+     * 驳回请假申请
+     * @param userId 系统用户id
+     */
+    void rejectStatus(String userId);
+
 }
 

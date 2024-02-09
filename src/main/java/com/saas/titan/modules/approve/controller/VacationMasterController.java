@@ -9,12 +9,7 @@ import com.saas.titan.modules.approve.dto.VacationMasterPageDto;
 import com.saas.titan.modules.approve.service.VacationMasterService;
 import com.saas.titan.modules.approve.vo.VacationMasterInsertVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -60,6 +55,28 @@ public class VacationMasterController {
     @PostMapping("/allPage")
     public ResultInfo<Page<VacationMasterAllPageDto>> getAllPage(@RequestBody BasicsVo vo) {
         return ResultInfo.build(vacationMasterService.getAllPage(vo));
+    }
+
+    /**
+     * 通过请假
+     * @param userId 系统用户id
+     * @return 统一返回值
+     */
+    @GetMapping("/pass/{userId}")
+    public ResultInfo<String> passStatus(@PathVariable("userId") String userId) {
+        vacationMasterService.passStatus(userId);
+        return ResultInfo.build();
+    }
+
+    /**
+     * 驳回请假
+     * @param userId 系统用户id
+     * @return 统一返回值
+     */
+    @GetMapping("/reject/{userId}")
+    public ResultInfo<String> rejectStatus(@PathVariable("userId") String userId) {
+        vacationMasterService.rejectStatus(userId);
+        return ResultInfo.build();
     }
 
 }

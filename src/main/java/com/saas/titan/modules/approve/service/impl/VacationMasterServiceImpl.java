@@ -78,4 +78,14 @@ public class VacationMasterServiceImpl extends ServiceImpl<VacationMasterDao, Va
         pages.setRecords(records);
         return pages;
     }
+
+    @Override
+    public void passStatus(String userId) {
+        vacationMasterDao.passStatus(userId);
+    }
+
+    @Override
+    public void rejectStatus(String userId) {
+        vacationMasterDao.rejectStatus(userId);
+    }
 }

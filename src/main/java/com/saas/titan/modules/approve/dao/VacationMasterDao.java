@@ -29,4 +29,7 @@ public interface VacationMasterDao extends BaseMapper<VacationMasterEntity> {
     Page<VacationMasterAllPageDto> getAllPage(@Param("page") Page<VacationMasterEntity> page,
                                               QueryWrapper<VacationMasterEntity> ew);
 
+    void passStatus(String userId);
+
+    void rejectStatus(String userId);
 }

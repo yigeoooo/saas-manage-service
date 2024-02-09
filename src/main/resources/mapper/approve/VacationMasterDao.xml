@@ -29,4 +29,18 @@
         ${ew.customSqlSegment}
     </select>
 
+    <update id="passStatus">
+        update vacation_master
+        set
+            status = "1"
+        where user_id = #{userId}
+    </update>
+
+    <update id="rejectStatus">
+        update vacation_master
+        set
+            status = "2"
+        where user_id = #{userId}
+    </update>
+
 </mapper>
