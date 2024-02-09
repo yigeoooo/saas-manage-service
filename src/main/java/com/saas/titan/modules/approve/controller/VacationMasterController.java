@@ -4,6 +4,7 @@ package com.saas.titan.modules.approve.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.utils.ResultInfo;
+import com.saas.titan.modules.approve.dto.VacationMasterAllPageDto;
 import com.saas.titan.modules.approve.dto.VacationMasterPageDto;
 import com.saas.titan.modules.approve.service.VacationMasterService;
 import com.saas.titan.modules.approve.vo.VacationMasterInsertVo;
@@ -49,6 +50,16 @@ public class VacationMasterController {
     @PostMapping("/page")
     public ResultInfo<Page<VacationMasterPageDto>> getPage(@RequestBody BasicsVo vo) {
         return ResultInfo.build(vacationMasterService.getPage(vo));
+    }
+
+    /**
+     * 请假审批列表
+     * @param vo 接参对象
+     * @return 统一返回值
+     */
+    @PostMapping("/allPage")
+    public ResultInfo<Page<VacationMasterAllPageDto>> getAllPage(@RequestBody BasicsVo vo) {
+        return ResultInfo.build(vacationMasterService.getAllPage(vo));
     }
 
 }

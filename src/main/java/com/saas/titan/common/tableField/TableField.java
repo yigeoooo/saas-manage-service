@@ -84,10 +84,12 @@ public class TableField {
         public static final String MENU_ID = "menu_id";
     }
 
-    public static class ApproveMaster extends CommonField {
+    public static class VacationMaster extends CommonField {
         public static final String USER_ID = "user_id";
 
         public static final String INSERT_TIME = "insert_time";
+
+        public static final String STATUS = "status";
     }
 
     public static class CommonResource extends CommonField {

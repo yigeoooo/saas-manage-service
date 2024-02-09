@@ -3,6 +3,7 @@ package com.saas.titan.modules.approve.dao;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.saas.titan.modules.approve.dto.VacationMasterAllPageDto;
 import com.saas.titan.modules.approve.dto.VacationMasterPageDto;
 import com.saas.titan.modules.approve.entity.VacationMasterEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -24,5 +25,8 @@ public interface VacationMasterDao extends BaseMapper<VacationMasterEntity> {
 
     Page<VacationMasterPageDto> getPage(@Param("page") Page<VacationMasterEntity> page,
                                         QueryWrapper<VacationMasterEntity> ew);
+
+    Page<VacationMasterAllPageDto> getAllPage(@Param("page") Page<VacationMasterEntity> page,
+                                              QueryWrapper<VacationMasterEntity> ew);
 
 }

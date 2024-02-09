@@ -7,9 +7,12 @@ import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.tableField.TableField;
 import com.saas.titan.common.utils.DateUtils;
 import com.saas.titan.common.utils.ShiroUtils;
+import com.saas.titan.modules.approve.dto.VacationMasterAllPageDto;
 import com.saas.titan.modules.approve.dto.VacationMasterPageDto;
 import com.saas.titan.modules.approve.service.VacationMasterService;
 import com.saas.titan.modules.approve.vo.VacationMasterInsertVo;
+import com.saas.titan.modules.sys.dao.SysUserDao;
+import com.saas.titan.modules.sys.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -26,6 +29,9 @@ public class VacationMasterServiceImpl extends ServiceImpl<VacationMasterDao, Va
 
     @Autowired
     private VacationMasterDao vacationMasterDao;
+
+    @Autowired
+    private SysUserDao sysUserDao;
 
     @Override
     public void insert(VacationMasterInsertVo vo) {
@@ -50,8 +56,26 @@ public class VacationMasterServiceImpl extends ServiceImpl<VacationMasterDao, Va
     public Page<VacationMasterPageDto> getPage(BasicsVo vo) {
         Page<VacationMasterEntity> page = new Page<>(vo.getPage(), vo.getSize());
         QueryWrapper<VacationMasterEntity> query = new QueryWrapper<>();
-        query.eq(TableField.ApproveMaster.USER_ID, ShiroUtils.getUserId());
-        query.orderByDesc(TableField.ApproveMaster.INSERT_TIME);
+        query.eq(TableField.VacationMaster.USER_ID, ShiroUtils.getUserId());
+        query.orderByDesc(TableField.VacationMaster.INSERT_TIME);
         return vacationMasterDao.getPage(page, query);
+    }
+
+    @Override
+    public Page<VacationMasterAllPageDto> getAllPage(BasicsVo vo) {
+        Page<VacationMasterEntity> page = new Page<>(vo.getPage(), vo.getSize());
+        QueryWrapper<VacationMasterEntity> query = new QueryWrapper<>();
+        query.orderByDesc(TableField.VacationMaster.INSERT_TIME);
+        query.eq(TableField.VacationMaster.STATUS, Constant.STR_ZERO);
+        Page<VacationMasterAllPageDto> pages = vacationMasterDao.getAllPage(page, query);
+        List<VacationMasterAllPageDto> records = pages.getRecords();
+        records.forEach(item -> {
+            QueryWrapper<SysUserEntity> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(TableField.VacationMaster.USER_ID, item.getUserId());
+            SysUserEntity entity = sysUserDao.selectOne(queryWrapper);
+            item.setUserName(entity.getUserName());
+        });
+        pages.setRecords(records);
+        return pages;
     }
 }
