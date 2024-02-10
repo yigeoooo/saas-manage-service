@@ -88,6 +88,7 @@ public class TableField {
         public static final String USER_ID = "user_id";
 
         public static final String TIME = "time";
+
     }
 
     public static class VacationMaster extends CommonField {
@@ -288,6 +289,11 @@ public class TableField {
          * 用戶ID
          */
         public static final String USER_ID = "user_id";
+
+        /**
+         * 用戶ID
+         */
+        public static final String ROLE_ID = "role_id";
         /**
          * 用戶名
          */

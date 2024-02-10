@@ -9,6 +9,7 @@ import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.modules.work.dto.WorkMasterDto;
 import com.saas.titan.modules.work.service.WorkMasterService;
 import com.saas.titan.modules.work.vo.WorkMasterInsertVo;
+import com.saas.titan.modules.work.vo.WorkMasterVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +51,17 @@ public class WorkMasterController {
     @PostMapping("/page")
     public ResultInfo<Page<WorkMasterDto>> getList(@RequestBody BasicsVo vo) {
         return ResultInfo.build(workMasterService.getList(vo));
+    }
+
+    /**
+     * 分页查询所有打卡信息
+     * @param vo 接参对象
+     * @return 统一返回值
+     */
+    @PostMapping("/list")
+    public ResultInfo<Page<WorkMasterDto>> getAllList(@RequestBody WorkMasterVo vo) {
+        //TODO 查询不合理
+        return ResultInfo.build(workMasterService.getPage(vo));
     }
 
 }

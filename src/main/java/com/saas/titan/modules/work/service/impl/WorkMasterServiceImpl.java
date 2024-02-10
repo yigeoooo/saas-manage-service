@@ -2,6 +2,7 @@ package com.saas.titan.modules.work.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.saas.titan.common.constant.Constant;
 import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.common.tableField.TableField;
 import com.saas.titan.common.utils.ShiroUtils;
@@ -12,12 +13,16 @@ import com.saas.titan.modules.sys.entity.SysUserEntity;
 import com.saas.titan.modules.work.dto.WorkMasterDto;
 import com.saas.titan.modules.work.service.WorkMasterService;
 import com.saas.titan.modules.work.vo.WorkMasterInsertVo;
+import com.saas.titan.modules.work.vo.WorkMasterVo;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.saas.titan.modules.work.dao.WorkMasterDao;
 import com.saas.titan.modules.work.entity.WorkMasterEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -52,6 +57,46 @@ public class WorkMasterServiceImpl extends ServiceImpl<WorkMasterDao, WorkMaster
         QueryWrapper<WorkMasterDto> query = new QueryWrapper<>();
         query.eq(TableField.WorkMaster.USER_ID, ShiroUtils.getUserId());
         query.orderByDesc(TableField.WorkMaster.TIME);
+        Page<WorkMasterDto> pages = workMasterDao.getList(page, query);
+        List<WorkMasterDto> records = pages.getRecords();
+        records.forEach(item -> {
+            QueryWrapper<SysUserEntity> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(TableField.WorkMaster.USER_ID, item.getUserId());
+            SysUserEntity entity = sysUserDao.selectOne(queryWrapper);
+            item.setUserName(entity.getUserName());
+            //查询角色名
+            String roleId = entity.getRoleId();
+            QueryWrapper<RoleMasterEntity> ew = new QueryWrapper<>();
+            ew.eq(TableField.RoleMaster.ROLE_ID, roleId);
+            RoleMasterEntity roleMasterEntity = roleMasterDao.selectOne(ew);
+            item.setRole(roleMasterEntity.getRoleName());
+        });
+        pages.setRecords(records);
+        return pages;
+    }
+
+    @Override
+    public Page<WorkMasterDto> getPage(WorkMasterVo vo) {
+        List<String> userIdList = new ArrayList<>();
+        if (StringUtils.isNotBlank(vo.getRoleId())) {
+            //查询role_id对象的user_id
+            QueryWrapper<SysUserEntity> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(TableField.SysUser.ROLE_ID, vo.getRoleId());
+            queryWrapper.eq(TableField.SysUser.IS_DELETED, Constant.STR_ZERO);
+            List<SysUserEntity> sysUserEntities = sysUserDao.selectList(queryWrapper);
+            //封装user_id集合
+            sysUserEntities.forEach(item -> {
+                userIdList.add(item.getUserId());
+            });
+        }
+        //构筑分页对象
+        Page<WorkMasterDto> page = new Page<>(vo.getPage(), vo.getSize());
+        //条件构造
+        QueryWrapper<WorkMasterDto> query = new QueryWrapper<>();
+        query.orderByDesc(TableField.WorkMaster.TIME);
+        if (CollectionUtils.isNotEmpty(userIdList)) {
+            query.in(TableField.WorkMaster.USER_ID, userIdList);
+        }
         Page<WorkMasterDto> pages = workMasterDao.getList(page, query);
         List<WorkMasterDto> records = pages.getRecords();
         records.forEach(item -> {

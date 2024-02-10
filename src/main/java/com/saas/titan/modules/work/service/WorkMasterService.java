@@ -6,6 +6,7 @@ import com.saas.titan.common.pojo.vo.BasicsVo;
 import com.saas.titan.modules.work.dto.WorkMasterDto;
 import com.saas.titan.modules.work.entity.WorkMasterEntity;
 import com.saas.titan.modules.work.vo.WorkMasterInsertVo;
+import com.saas.titan.modules.work.vo.WorkMasterVo;
 
 
 /**
@@ -25,9 +26,15 @@ public interface WorkMasterService extends IService<WorkMasterEntity> {
 
     /**
      * 查询个人打卡记录
-     * @return WorkMasterDto
+     * @return Page
      */
     Page<WorkMasterDto> getList(BasicsVo vo);
+
+    /**
+     * 过滤条件查询所有员工打卡信息
+     * @return Page
+     */
+    Page<WorkMasterDto> getPage(WorkMasterVo vo);
 
 }
 
