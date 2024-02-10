@@ -84,6 +84,12 @@ public class TableField {
         public static final String MENU_ID = "menu_id";
     }
 
+    public static class WorkMaster extends CommonField {
+        public static final String USER_ID = "user_id";
+
+        public static final String TIME = "time";
+    }
+
     public static class VacationMaster extends CommonField {
         public static final String USER_ID = "user_id";
 
