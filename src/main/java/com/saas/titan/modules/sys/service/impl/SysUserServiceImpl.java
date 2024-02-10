@@ -4,12 +4,17 @@ package com.saas.titan.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.saas.titan.common.constant.Constant;
 import com.saas.titan.common.exception.BusinessException;
 import com.saas.titan.common.pojo.entity.ToEmail;
+import com.saas.titan.common.tableField.TableField;
 import com.saas.titan.common.utils.*;
+import com.saas.titan.modules.role.dao.RoleMasterDao;
+import com.saas.titan.modules.role.entity.RoleMasterEntity;
 import com.saas.titan.modules.sys.dao.SysUserDao;
+import com.saas.titan.modules.sys.dto.SysUserDto;
 import com.saas.titan.modules.sys.dto.TokenDto;
 import com.saas.titan.modules.sys.entity.SysUserEntity;
 import com.saas.titan.modules.sys.service.SysCaptchaService;
@@ -17,14 +22,12 @@ import com.saas.titan.modules.sys.service.SysUserService;
 import com.saas.titan.modules.sys.service.SysUserTokenService;
 import com.saas.titan.modules.sys.verify.GoogleAuthenticator;
 import com.saas.titan.modules.sys.vo.SysUserSaveVo;
+import com.saas.titan.modules.sys.vo.SysUserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import static com.saas.titan.common.utils.ShiroUtils.getLoginId;
 
@@ -54,7 +57,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
     private SysCaptchaService sysCaptchaService;
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RoleMasterDao roleMasterDao;
 
     /**
      * 根據用戶登陸ID，查詢系統用戶
@@ -84,7 +87,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         user.setUpdateUserId(getLoginId());
         user.setInsertTime(sysDate);
         user.setUpdateTime(sysDate);
-        user.setInitialPassword(userForm.getInitialPassword());
+        user.setInitialPassword(userForm.getPassword());
         user.setUserId(IdWorker.getIdStr(user));
         //設置GoogleKey
         user.setGoogleKey(GoogleAuthenticator.generateSecretKey());
@@ -129,6 +132,22 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         TokenDto dto = sysUserTokenService.createTempToken(entity.getUserId());
         dto.setUserName(entity.getUserName());
         return dto;
+    }
+
+    @Override
+    public Page<SysUserDto> getPage(SysUserVo vo) {
+        //构筑分页对象
+        Page<SysUserEntity> page = new Page<>(vo.getPage(), vo.getSize());
+        //构筑条件
+        QueryWrapper<SysUserEntity> query = new QueryWrapper<>();
+        query.eq("su." + TableField.SysUser.IS_DELETED, Constant.STR_ZERO);
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(vo.getRoleName())) {
+           query.eq("rm." + TableField.RoleMaster.ROLE_NAME, vo.getRoleName());
+        }
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(vo.getUserName())) {
+            query.eq("su." + TableField.SysUser.USER_NAME, vo.getUserName());
+        }
+        return sysUserDao.getPage(page, query);
     }
 
     /**

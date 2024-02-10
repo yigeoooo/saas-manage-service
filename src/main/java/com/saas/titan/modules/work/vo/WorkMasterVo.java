@@ -15,6 +15,6 @@ public class WorkMasterVo extends BasicsVo {
     /**
      * 角色id
      */
-    private String roleId;
+    private String userId;
 
 }

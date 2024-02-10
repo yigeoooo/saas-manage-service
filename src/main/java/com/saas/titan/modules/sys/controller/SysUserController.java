@@ -1,12 +1,15 @@
 package com.saas.titan.modules.sys.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.saas.titan.common.exception.BusinessException;
 import com.saas.titan.common.utils.MessageCode;
 import com.saas.titan.common.utils.ResultInfo;
 import com.saas.titan.common.validator.ValidatorUtils;
 import com.saas.titan.common.validator.group.AddGroup;
+import com.saas.titan.modules.sys.dto.SysUserDto;
 import com.saas.titan.modules.sys.service.SysUserService;
 import com.saas.titan.modules.sys.vo.SysUserSaveVo;
+import com.saas.titan.modules.sys.vo.SysUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +28,16 @@ public class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
+
+    /**
+     * 分页条件查询系统用户
+     * @param vo 接参对象
+     * @return 统一返回值
+     */
+    @PostMapping("/page")
+    public ResultInfo<Page<SysUserDto>> getPage(@RequestBody SysUserVo vo) {
+        return ResultInfo.build(sysUserService.getPage(vo));
+    }
 
     /**
      * 用戶管理-保存用戶

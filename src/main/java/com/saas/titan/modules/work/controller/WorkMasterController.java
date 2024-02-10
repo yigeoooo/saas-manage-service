@@ -44,7 +44,7 @@ public class WorkMasterController {
     }
 
     /**
-     * 分页查询个人打卡信息
+     * 分页查询登陆人人打卡信息
      * @param vo 接参对象
      * @return 统一返回值
      */
@@ -54,13 +54,12 @@ public class WorkMasterController {
     }
 
     /**
-     * 分页查询所有打卡信息
+     * 分页查询个人打卡信息
      * @param vo 接参对象
      * @return 统一返回值
      */
     @PostMapping("/list")
     public ResultInfo<Page<WorkMasterDto>> getAllList(@RequestBody WorkMasterVo vo) {
-        //TODO 查询不合理
         return ResultInfo.build(workMasterService.getPage(vo));
     }
 

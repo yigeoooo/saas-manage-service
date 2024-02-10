@@ -3,9 +3,13 @@
 package com.saas.titan.modules.sys.dao;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.saas.titan.modules.sys.dto.SysUserDto;
 import com.saas.titan.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -45,4 +49,9 @@ public interface SysUserDao extends BaseMapper<SysUserEntity> {
      * 根据用户登陆ID，查询数据库内是否有相同的登陆账号
      */
     Integer queryByLoginIdNum(String loginId, String userId);
+
+
+    Page<SysUserDto> getPage(@Param("page") Page<SysUserEntity> page,
+                             @Param("ew") QueryWrapper<SysUserEntity> ew);
+
 }

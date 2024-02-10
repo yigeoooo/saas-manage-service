@@ -12,6 +12,7 @@
             work
         from
             work_master
+        ${ew.customSqlSegment}
     </select>
 
 </mapper>

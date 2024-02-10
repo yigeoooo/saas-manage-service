@@ -115,6 +115,8 @@ public class TableField {
 
     public static class RoleMaster extends CommonField {
         public static final String ROLE_ID = "role_id";
+
+        public static final String ROLE_NAME = "role_name";
     }
 
     public static class IpMaster extends CommonField {

@@ -77,26 +77,12 @@ public class WorkMasterServiceImpl extends ServiceImpl<WorkMasterDao, WorkMaster
 
     @Override
     public Page<WorkMasterDto> getPage(WorkMasterVo vo) {
-        List<String> userIdList = new ArrayList<>();
-        if (StringUtils.isNotBlank(vo.getRoleId())) {
-            //查询role_id对象的user_id
-            QueryWrapper<SysUserEntity> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq(TableField.SysUser.ROLE_ID, vo.getRoleId());
-            queryWrapper.eq(TableField.SysUser.IS_DELETED, Constant.STR_ZERO);
-            List<SysUserEntity> sysUserEntities = sysUserDao.selectList(queryWrapper);
-            //封装user_id集合
-            sysUserEntities.forEach(item -> {
-                userIdList.add(item.getUserId());
-            });
-        }
         //构筑分页对象
         Page<WorkMasterDto> page = new Page<>(vo.getPage(), vo.getSize());
         //条件构造
         QueryWrapper<WorkMasterDto> query = new QueryWrapper<>();
+        query.eq(TableField.WorkMaster.USER_ID, vo.getUserId());
         query.orderByDesc(TableField.WorkMaster.TIME);
-        if (CollectionUtils.isNotEmpty(userIdList)) {
-            query.in(TableField.WorkMaster.USER_ID, userIdList);
-        }
         Page<WorkMasterDto> pages = workMasterDao.getList(page, query);
         List<WorkMasterDto> records = pages.getRecords();
         records.forEach(item -> {

@@ -3,10 +3,13 @@
 package com.saas.titan.modules.sys.service;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.saas.titan.modules.sys.dto.SysUserDto;
 import com.saas.titan.modules.sys.dto.TokenDto;
 import com.saas.titan.modules.sys.entity.SysUserEntity;
 import com.saas.titan.modules.sys.vo.SysUserSaveVo;
+import com.saas.titan.modules.sys.vo.SysUserVo;
 
 
 /**
@@ -38,4 +41,10 @@ public interface SysUserService extends IService<SysUserEntity> {
      * @return TokenDto
      */
     TokenDto loginByEmail(String email, String code);
+
+    /**
+     * 分页查询系统用户
+     * @return Page
+     */
+    Page<SysUserDto> getPage(SysUserVo vo);
 }
